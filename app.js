@@ -3,6 +3,7 @@ require('dotenv/config');
 //PACKAGES
 const 
 express = require('express'),
+mongoose = require('express'),
 app = express();
 
 //ROUTERS
