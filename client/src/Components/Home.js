@@ -12,7 +12,7 @@ export default function Home() {
             <br/>
 
             <Button 
-            onClick={() => {window.location = loginLink}}
+            onClick= {() => {window.location = loginLink}}
             text='Login Button'
             />
             <br/>

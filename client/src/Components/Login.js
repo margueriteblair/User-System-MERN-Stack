@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 export default function Login() {
     const regLink = window.location.origin + '/register';
@@ -9,11 +10,8 @@ export default function Login() {
             </h1>
             <br/>
             <br/>
-            <a
-                href={regLink}
-            >
-                Register
-            </a>
+            <Button onClick={() => {window.location = regLink}} text="Register"/>
+
         </div>
     )
 }

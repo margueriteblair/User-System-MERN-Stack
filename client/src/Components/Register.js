@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button';
 
 export default function Register() {
     const loginLink = window.location.origin + '/login';
@@ -8,11 +9,7 @@ export default function Register() {
                 Welcome To Our Service
             </h1>
             <br/>
-            <a
-                href={loginLink}
-            >
-                Login
-            </a>
+            <Button onClick={() =>{window.location = loginLink}} text="Login Button"/>
             <br/>
         </div>
     )
