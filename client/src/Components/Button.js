@@ -5,7 +5,7 @@ export default function Button(props) {
     
     return (
         <div>
-            <button style={...props.style} onClick={props.onClick}>{props.text}</button>
+            <button style={{...props.style}} onClick={props.onClick}>{props.text}</button>
         </div>
     )
 }
