@@ -12,20 +12,12 @@ export default function Home() {
             <br/>
 
             <Button 
-            onClick={() => {console.log("Click Login")}}
-            text='Login'
+            onClick={() => {window.location = loginLink}}
+            text='Login Button'
             />
-            {/* <a
-                href={loginLink}
-            >
-                Login
-            </a> */}
             <br/>
-            <a
-                href={regLink}
-            >
-                Register
-            </a>
+            <Button onClick={() => {window.location = regLink}} text="Register Button"/>
+
         </div>
     )
 }
