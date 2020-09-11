@@ -12,8 +12,8 @@ export default function Home() {
             <br/>
 
             <Button 
-            onClick={() => {console.log("Click Login")}}
-            text='Login'
+            onClick={() => {window.location = loginLink}}
+            text='Login Button'
             />
             {/* <a
                 href={loginLink}
