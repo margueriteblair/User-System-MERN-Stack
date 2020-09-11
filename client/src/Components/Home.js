@@ -14,6 +14,7 @@ export default function Home() {
             <Button 
             onClick={() => {window.location = loginLink}}
             text='Login Button'
+            style={{color: "white", backgroundColor: "black"}}
             />
             {/* <a
                 href={loginLink}
