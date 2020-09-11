@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 export default function Home() {
     const loginLink = window.location.origin + '/login';
@@ -9,11 +10,16 @@ export default function Home() {
                 Welcome To Our Service
             </h1>
             <br/>
-            <a
+
+            <Button 
+            onClick={() => {console.log("Click Login")}}
+            text='Login'
+            />
+            {/* <a
                 href={loginLink}
             >
                 Login
-            </a>
+            </a> */}
             <br/>
             <a
                 href={regLink}
