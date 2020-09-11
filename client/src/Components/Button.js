@@ -9,3 +9,9 @@ export default function Button(props) {
         </div>
     )
 }
+
+const buttonStyle = {
+    padding: 10,
+    borderRadius: 5,
+    fontSize: "large"
+}
