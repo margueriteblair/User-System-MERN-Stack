@@ -2,8 +2,8 @@ import React from 'react'
 import Button from './Button'
 
 export default function Home() {
-    const loginLink = window.location.origin + '/login';
-    const regLink = window.location.origin + '/register';
+    const loginLink = '/login';
+    const regLink = '/register';
     return (
         <div>
             <h1>

@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button';
 
 export default function Register() {
-    const loginLink = window.location.origin + '/login';
+    const loginLink = '/login';
     return (
         <div>
             <h1>
