@@ -8,7 +8,8 @@ export default function Form(props) { //inputs=Array, title=String
         <h2>{props.title}</h2>
         <form>
             {
-
+                Array.isArray(props.inputs)
+                ? 
                 props.inputs.map( inProps => {
                     return (
                         <Input 
@@ -22,11 +23,12 @@ export default function Form(props) { //inputs=Array, title=String
                     )
     
                 })
+                : "Dev Warning! No inputs, check code."
             }
         </form>
         <Button 
         text="Submit"
-        onClick={props.subimt}
+        onClick={props.submitFunc}
         />
         </div>
     )
