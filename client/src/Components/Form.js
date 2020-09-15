@@ -3,10 +3,15 @@ import Input from './Input'
 import Button from './Button'
 
 export default function Form(props) { //inputs=Array, title=String
+    const button_onClick = () => {
+        props.submitFunc(document.getElementById(props.id))
+    }
+
     return (
     <div>
         <h2>{props.title}</h2>
         <form>
+            
             {
                 Array.isArray(props.inputs)
                 ? 
@@ -27,8 +32,9 @@ export default function Form(props) { //inputs=Array, title=String
             }
         </form>
         <Button 
-        text="Submit"
-        onClick={props.submitFunc}
+        text={"Submit"}
+        type="button"
+        onClick={button_onClick}
         />
         </div>
     )

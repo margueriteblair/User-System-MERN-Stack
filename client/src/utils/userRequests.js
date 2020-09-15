@@ -1,11 +1,14 @@
-const { default: Form } = require("../../../../../../../../../../../../Form")
 
 module.exports = {
     loginReq: (form) => {
-        console.log(form)
+        for (const input of form) {
+            console.log(input)
+        }
     },
 
     regReq: (form) => {
-        console.log(form)
+        for (const input of form) {
+            console.log(input)
+        }
     }
 }
