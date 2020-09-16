@@ -1,21 +1,29 @@
 import React from 'react'
+
+//imported components
 import Button from './Button';
-import userInputs from '../utils/userInputs';
 import Form from './Form'
+
+//utils
+import {reqInputs} from '../utils/userInputs';
 import { regReq } from '../utils/userRequests'
+
+
 
 export default function Register() {
     const loginLink = '/login';
     return (
-        <div>
+        <div className="register">
             <h1>
-                Welcome To Our Service
+                Register for an Account
             </h1>
             <br/>
-            <Form title="Register" inputs={[...userInputs, {name: 'password2', placeholder: "Enter Password Again", type: "password"}]}
-                submitFunc={regReq}
+            <Form title="Register" inputs={reqInputs}
+            submitFunc={regReq}
+            id="registerForm"
             />
-            <Button onClick={() =>{window.location = loginLink}} text="Login Button"/>
+            <p>Already Have an Account?</p>
+            <Button onClick={() =>{window.location = loginLink}} style={{color: "white", backgroundColor: "black"}} text="Login Button"/>
             <br/>
         </div>
     )

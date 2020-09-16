@@ -1,6 +1,6 @@
 module.exports = {
 loginInputs: [
-    {name: 'credential', placeholder: 'Enter Username or Email', type: 'text'},
+    {name: 'credential', placeholder: 'Username or Email', type: 'text'},
     {name: 'password', placeholder: 'Enter Password', type: 'password'}
 
 ],
