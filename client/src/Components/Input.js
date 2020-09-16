@@ -23,6 +23,7 @@ const defautStyle = {
     background: '#222',
     border: 'none',
     padding: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    margin: 4
 }
 

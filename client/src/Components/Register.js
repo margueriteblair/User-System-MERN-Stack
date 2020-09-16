@@ -14,10 +14,7 @@ export default function Register() {
     const loginLink = '/login';
     return (
         <div className="register">
-            <h1>
-                Register for an Account
-            </h1>
-            <br/>
+            
             <Form title="Register" inputs={reqInputs}
             submitFunc={regReq}
             id="registerForm"

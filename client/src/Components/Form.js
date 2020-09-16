@@ -35,7 +35,7 @@ export default function Form(props) { //inputs=Array, title=String
         text={"Submit"}
         type="button"
         onClick={button_onClick}
-        style={{marginTop: 10}}
+        style={{margin: 50}}
         />
         </div>
     )
