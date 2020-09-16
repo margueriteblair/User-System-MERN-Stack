@@ -1,22 +1,17 @@
 import React from 'react'
 import Button from './Button'
-import Input from './Input'
-import userInputs from '../utils/userInputs'
 import Form from './Form'
-import {} from '../utils/userRequests'
+import {loginReq} from '../utils/userRequests'
+import {loginInputs} from '../utils/userInputs'
 
 export default function Login() {
     const regLink = '/register';
     return (
-        <div>
-            <h1>
-                Login to Your Account
-            </h1>
+        <div className="login">
+            <Form inputs={loginInputs} title="Login" id="loginForm" submitFunc={loginReq}/>
             <br/>
-            <Form inputs={userInputs} title="Login" id="loginForm" submitFunc={() => {}/>
-            <Input placeholder="Enter Name" name="name" type="text" />
-            <br/>
-            <Button onClick={() => {window.location = regLink}} text="Register"/>
+            <p>Need an Account?</p>
+            <Button style={{color: "white", backgroundColor: "black"}} text="Sign Up Here" onClick={() => {window.location = regLink}}/>
 
         </div>
     )
