@@ -10,7 +10,7 @@ export default function Form(props) { //inputs=Array, title=String
     return (
     <div>
         <h2>{props.title}</h2>
-        <form>
+        <form id={props.id}>
             
             {
                 Array.isArray(props.inputs)

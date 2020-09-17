@@ -3,7 +3,7 @@ const baseURL = 'http://localhost:3399'
 const validator = require('validator')
 
 module.exports = {
-    loginReq: async (form) => {
+    loginReq: (form) => {
         const reqBody = {}, fieldErrors = {};
         for (const input of form) {
             if (input.name === "credential" && (input.value.length < 3 || input.value.length > 254)) {
@@ -14,7 +14,7 @@ module.exports = {
             }
         }
 
-        if (Object.entries(fieldErrors).length !== 0) {
+        if (Object.keys(fieldErrors).length !== 0) {
             let errorStr = "";
             for (const field in fieldErrors) {
                 errorStr += `\nError in field ${field !== "credential" ? field : "username or email"} - ${fieldErrors[field]}`
@@ -30,7 +30,7 @@ module.exports = {
 
         const loginUrl = baseURL + '/user/login'
 
-        await axios.put(loginUrl, reqBody)
+        axios.put(loginUrl, reqBody)
         .then(res => {
             console.log(res)
         })
@@ -41,7 +41,7 @@ module.exports = {
         })
     },
 
-    regReq: async (form) => {
+    regReq: (form) => {
         const reqBody = {}, fieldErrors = {}
 
         for (const input of form) {
@@ -60,22 +60,20 @@ module.exports = {
 
                 }
             }
-            if (input.name === "password") {
-                if (val.length || val.length > 1000) {
-                    fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
-                }
-            }
-            if (input.name === "password2") {
-                if (val.length < 7 || val.length > 1000) {
-                    fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
-                }
-            }
+            // if (input.name === "password" && val.length > 1000) {
+            //         fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
+            // }
+            // if (input.name === "password2") {
+            //     if (val.length < 7 || val.length > 1000) {
+            //         fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
+            //     }
+            // }
         }
-        if (document.getElementsByName("password") !== document.getElementsByName("password2")) {
-            fieldErrors["password_match"] = "\nThe two passwords must match\n"
-        }
+        // if (document.getElementsByName("password") !== document.getElementsByName("password2")) {
+        //     fieldErrors["password_match"] = "\nThe two passwords must match\n"
+        // }
 
-        if (Object.entries(fieldErrors).length !== 0) {
+        if (Object.keys(fieldErrors).length !== 0) {
             let errorStr = "";
             for (const field in fieldErrors) {
                 errorStr += `\nError in field: ${field !== "credential" ? field : "username or email"} - ${fieldErrors[field]}`
@@ -92,7 +90,7 @@ module.exports = {
             console.log(reqBody)
             const registerURL = `${baseURL}/user/register`
 
-            await axios.post(registerURL, reqBody)
+            axios.post(registerURL, reqBody)
             .then(res => {console.log(res)})
             .catch(error => {
                 if (error) {

@@ -20,7 +20,6 @@ const validateUser = async (req, res, next) => {
     const { email, password, username } = req.body;
 
 
-
     if (email === undefined || password === undefined || username === undefined ) {
       return res.status(400).json({
         error: 'One or more missing fields'
@@ -84,7 +83,6 @@ const validateUser = async (req, res, next) => {
         });
     } else {
         const encryptedPassword = await bcrypt.hash(password, 10);
-
         req.userData = {
             email: email,
             username: username,
