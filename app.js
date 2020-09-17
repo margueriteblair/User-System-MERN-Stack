@@ -10,7 +10,8 @@ app = express();
 const 
 userRouter = require('./api/routes/userRouter');
 //MIDDLEWARES
-
+const morgan = require('morgan')
+const cors = require('cors')
 //ENV CONTANTS
 const 
 PORT = process.env.PORT || 3000, //Port number for server to listen on, defined in enviorment file
@@ -25,10 +26,13 @@ const mongoConnect = require('./database/mongo-connect');
 */
 
 //homepage route
-app.use('/user', userRouter);
-
+app.use(cors())
+app.use(express.json())
+app.use(morgan('dev'))
 
 //Connect to Data-Base
+app.use('/user', userRouter);
+
 mongoConnect(URI)
 //Start server listening on port
 app.listen(PORT);

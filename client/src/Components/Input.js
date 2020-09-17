@@ -1,8 +1,5 @@
 import React from 'react'
-        //placeholder
-        //type
-        //onChange function
-        //name for the input
+
 
 export default function Input(props) {
 
