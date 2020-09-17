@@ -10,9 +10,10 @@ module.exports = async (req, res, next) => {
 
     try {
         const {credential, password} = req.body
+        console.log(req.body)
         if ( credential === undefined || password === undefined) {
             return res.status(400).json({
-              err: "Username or Password Incorrect"
+              err: "One or more required values are missing."
             })
           }
           const 
