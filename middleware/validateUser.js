@@ -6,7 +6,7 @@ const msgs = {
     emailVaild: 'Valid Email Required',
     userChars: "Username Must Use Alphanumeric Characters Only",
     userInUse: "Username Already In Use",
-    legthInvalid: (feild) => {
+    lengthInvalid: (feild) => {
         return `The Given ${feild} Did Not Meet Length Requirements`
     }
 }
@@ -35,14 +35,14 @@ const validate = async (req, res, next) => {
     if (e != undefined && e.length < 6 || e.length > 254) {
         failedValues.push({
             key: "email",
-            message: msgs.legthInvalid('Email')
+            message: msgs.lengthInvalid('Email')
         })
     }
 
     if (username == undefined || username.trim().length == 0 || !validator.isLength(username, { min: 3, max: 21 })) {
         failedValues.push({
             key: "username",
-            message: msgs.legthInvalid('Username')
+            message: msgs.lengthInvalid('Username')
         })
     } else if ( !validator.isAlphanumeric(username, 'en-US') ) {
 
@@ -63,7 +63,7 @@ const validate = async (req, res, next) => {
     if ( !validator.isLength(pass, { min: 7, max: 1000 }) ) {
         failedValues.push({
             key: "password",
-            message: msgs.legthInvalid('Password')
+            message: msgs.lengthInvalid('Password')
         })
     }
 
