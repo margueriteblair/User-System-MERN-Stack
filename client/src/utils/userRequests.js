@@ -1,15 +1,34 @@
 const {default: axios} =  require('axios')
-
+const baseURL = 'http://localhost:3000'
+const validator = require('validator')
 
 module.exports = {
-    loginReq: (form) => {
-        const reqBody = {}
+    loginReq: async (form) => {
+        const reqBody = {}, fieldErrors = {};
         for (const input of form) {
-            if (input.value !== "") {
+            if (input.name === "credential" && (input.value.length < 3 || input.value.length > 254)) {
+                fieldErrors[input.name] = "\nInvalid length, must be between 3 and 254 characters!"
+            }
+            if (input.name === "password" && (input.value.length < 7 || input.value.length > 1000)) {
+                fieldErrors[input.name] = "\nInvalid password length, password must be between 7 and 1000 characters\n"
+            }
+        }
+
+        if (Object.entries(fieldErrors).length !== 0) {
+            let errorStr = "";
+            for (const field in fieldErrors) {
+                errorStr += `\nError in field ${field !== "credential" ? field : "username or email"} - ${fieldErrors[field]}`
+            }
+            console.log(errorStr)
+            alert(errorStr)
+            return
+        } else {
+            for (const input of form) {
                 reqBody[input.name] = input.value
             }
         }
-        const loginUrl = 'https://localhost:3000/user/login'
+
+        const loginUrl = baseURL + '/user/login'
         const reqData = {
             headers: {
                 'Content-Type': 'application/json',
