@@ -71,6 +71,35 @@ module.exports = {
                 }
             }
         }
+        if (document.getElementsByName("password") !== document.getElementsByName("password2")) {
+            fieldErrors["password_match"] = "\nThe two passwords must match\n"
+        }
+
+        if (Object.entries(fieldErrors).length !== 0) {
+            let errorStr = "";
+            for (const field in fieldErrors) {
+                errorStr += `\nError in field: ${field !== "credential" ? field : "username or email"} - ${fieldErrors[field]}`
+            }
+            console.log(errorStr)
+            alert(errorStr)
+            return
+        } else {
+            for (const input of form) {
+                if (input.name !== "confirm_pass") {
+                    reqBody[input.name] = input.value
+                }
+            }
+            console.log(reqBody)
+            const registerURL = `${baseURL}/user/register`
+
+            await axios.post(registerURL, reqBody)
+            .then(res => {console.log(res)})
+            .catch(error => {
+                if (error) {
+                    console.log(error)
+                }
+            })
+        }
     }
 }
 
