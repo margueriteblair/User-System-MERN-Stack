@@ -29,14 +29,8 @@ module.exports = {
         }
 
         const loginUrl = baseURL + '/user/login'
-        const reqData = {
-            headers: {
-                'Content-Type': 'application/json',
 
-            },
-            data: JSON.stringify(reqBody)
-        }
-        axios.put(loginUrl, reqData)
+        await axios.put(loginUrl, reqBody)
         .then(res => {
             console.log(res)
         })
@@ -47,9 +41,35 @@ module.exports = {
         })
     },
 
-    regReq: (form) => {
+    regReq: async (form) => {
+        const reqBody = {}, fieldErrors = {}
+
         for (const input of form) {
-            console.log(input)
+            const val = input.value
+            if (input.name === "email") {
+                if (val.length < 6 || val.length > 254) {
+                    fieldErrors.email = "\nYou must enter a valid email.\n"
+
+                } else if (!validator.isEmail(val)) {
+                    fieldErrors.email = "\nYou must enter a valid email.\n"
+                }
+            }
+            if (input.name === "username") {
+                if (val.length < 3 || val.length > 21) {
+                    fieldErrors.username = "\nUsername length has to be between 3 and 21 valid characters.\n"
+
+                }
+            }
+            if (input.name === "password") {
+                if (val.length || val.length > 1000) {
+                    fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
+                }
+            }
+            if (input.name === "password2") {
+                if (val.length < 7 || val.length > 1000) {
+                    fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
+                }
+            }
         }
     }
 }
