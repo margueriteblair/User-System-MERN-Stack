@@ -1,22 +1,25 @@
+//imported omdels and validator and bcrypt packages
 const User = require("../models/User");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 
-const msgs = {
-    emailinUse: "Email Already In Use",
+const errMessages = {
+    emailinUse: "That Email Is Already In Use",
     invalidEmail: "Valid Email Required", //when the email isn't the right length or characters
-    userChars: "Username Must Use Alphanumeric Characters Only",
-    userInUse: "Username Already In Use",
+    userChars: "Username Must Only Use Alphanumeric Characters",
+    userInUse: "That Username Is Already In Use",
     lengthIssue: (field) => {
         return `The Given ${field} Did Not Meet Length Requirements`;
     },
 };
 
-const validateUser = async(req, res, next) => {
+const validateUser = async (req, res, next) => {
 
   console.log(req.body);
 
     const { email, password, username } = req.body;
+
+
 
     if (email === undefined || password === undefined || username === undefined ) {
       return res.status(400).json({
@@ -26,41 +29,37 @@ const validateUser = async(req, res, next) => {
 
     failedValues = [];
 
+//all email validations are below: 
     if (!validator.isEmail(email)) {
         failedValues.push({
             key: "email",
-            message: msgs.invalidEmail,
+            message: errMessages.invalidEmail,
         });
     }
-
+    if ((email != undefined && email.length < 6) || email.length > 254) {
+        failedValues.push({
+            key: "email",
+            message: errMessages.lengthIssue("Email"),
+        });
+    }
     const emailinUse = (await User.findOne({ email: email })) != null;
     if (emailinUse) {
         failedValues.push({
             key: "email",
-            message: msgs.emailinUse,
+            message: errMessages.emailinUse,
         });
     }
 
-    if ((email != undefined && email.length < 6) || email.length > 254) {
-        failedValues.push({
-            key: "email",
-            message: msgs.lengthIssue("Email"),
-        });
-    }
-
-    if (
-        username == undefined ||
-        username.trim().length == 0 ||
-        !validator.isLength(username, { min: 3, max: 21 })
-    ) {
+//username validations below:
+    if (username == undefined || username.trim().length == 0 ||!validator.isLength(username, { min: 3, max: 21 })) {
         failedValues.push({
             key: "username",
-            message: msgs.lengthIssue("Username"),
+            message: errMessages.lengthIssue("Username"),
         });
     } else if (!validator.isAlphanumeric(username, "en-US")) {
         failedValues.push({
             key: "username",
-            message: msgs.userChars,
+            message: errMessages.userChars,
         });
     }
 
@@ -68,14 +67,14 @@ const validateUser = async(req, res, next) => {
     if (userInUse) {
         failedValues.push({
             key: "username",
-            message: msgs.userInUse,
+            message: errMessages.userInUse,
         });
     }
 
     if (!validator.isLength(password, { min: 7, max: 1000 })) {
         failedValues.push({
             key: "password",
-            message: msgs.lengthIssue("Password"),
+            message: errMessages.lengthIssue("Password"),
         });
     }
 
@@ -84,8 +83,7 @@ const validateUser = async(req, res, next) => {
             validation_error: failedValues,
         });
     } else {
-
-      const encryptedPassword = await bcrypt.hash(password, 10);
+        const encryptedPassword = await bcrypt.hash(password, 10);
 
         req.userData = {
             email: email,
