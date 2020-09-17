@@ -10,8 +10,9 @@ app = express();
 const 
 userRouter = require('./api/routes/userRouter');
 //MIDDLEWARES
-const morgan = require('morgan')
-const cors = require('cors')
+const
+morgan = require("morgan"),
+cors = require("cors");
 //ENV CONTANTS
 const 
 PORT = process.env.PORT || 3000, //Port number for server to listen on, defined in enviorment file

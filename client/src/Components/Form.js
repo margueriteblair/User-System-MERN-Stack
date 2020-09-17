@@ -24,6 +24,7 @@ export default function Form(props) { //inputs=Array, title=String
                         style={inProps.style}
                         id={inProps.id}
                         onChange={inProps.onChange}
+                        key={inProps.name}
                         />    
                     )
     
