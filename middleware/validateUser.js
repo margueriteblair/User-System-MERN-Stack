@@ -22,7 +22,7 @@ const validateUser = async (req, res, next) => {
 
     if (email === undefined || password === undefined || username === undefined ) {
       return res.status(400).json({
-        error: 'One or more missing fields'
+        error: 'One or more required values are missing.'
       })
     }
 

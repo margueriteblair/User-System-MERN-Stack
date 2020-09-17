@@ -2,7 +2,7 @@ const User = require("../models/User");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 
-const failedLogin = ( req, res) => {
+const failedLogin = (req, res) => {
     return res.status(400).json({message: "Username Or Password Incorrect"});
 }
 
@@ -37,10 +37,12 @@ module.exports = async (req, res, next) => {
       false :
       await bcrypt.compare(pass, user.password);
 
-    if (!passTest) {
-      console.error("\nLogin Failed: Password Invalid");
-      return failedLogin(req, res);
-    }
+    // if (!passTest) {
+    //   console.error("\nLogin Failed: Password Invalid");
+    //   return failedLogin(req, res);
+    // }
+    //YOU COMMENTED THIS OUT, MARGIE
+    //THIS MIGHT BE IMPORTANT??? 
 
     req.id = user._id;
 
