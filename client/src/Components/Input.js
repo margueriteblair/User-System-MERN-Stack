@@ -16,7 +16,7 @@ export default function Input(props) {
 }
 
 const defautStyle = {
-    color: 'black',
+    color: "white",
     background: '#222',
     border: 'none',
     padding: 10,
