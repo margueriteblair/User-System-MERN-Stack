@@ -33,14 +33,14 @@ module.exports = async (req, res, next) => {
 
     const pass = req.body.password,
       passTest =
-      pass === undefined || pass.trim() === "" ?
-      false :
-      await bcrypt.compare(pass, user.password);
+      pass === undefined || pass.trim() === "" 
+      ? false 
+      : await bcrypt.compare(pass, user.password);
 
-    // if (!passTest) {
-    //   console.error("\nLogin Failed: Password Invalid");
-    //   return failedLogin(req, res);
-    // }
+    if (!passTest) {
+      console.error("\nLogin Failed: Password Invalid");
+      return failedLogin(req, res);
+    }
     //YOU COMMENTED THIS OUT, MARGIE
     //THIS MIGHT BE IMPORTANT??? 
 
