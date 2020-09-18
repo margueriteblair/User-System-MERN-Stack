@@ -66,11 +66,12 @@ module.exports = {
             if (input.name === "password2" && (val.length < 7 || val.length > 1000)) {
                     fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
             }
+            if (document.getElementsByName("password").value !== document.getElementsByName("password2").value) {
+                fieldErrors["password_match"] = "\nThe two passwords must match\n"
+            }
+    
+    
         }
-        if (document.getElementsByName("password") !== document.getElementsByName("password2")) {
-            fieldErrors["password_match"] = "\nThe two passwords must match\n"
-        }
-
         if (Object.keys(fieldErrors).length !== 0) {
             let errorStr = "";
             for (const field in fieldErrors) {
