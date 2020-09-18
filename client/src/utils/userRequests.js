@@ -43,7 +43,6 @@ module.exports = {
 
     regReq: (form) => {
         const reqBody = {}, fieldErrors = {}
-
         for (const input of form) {
             const val = input.value
             if (input.name === "email") {
@@ -54,16 +53,10 @@ module.exports = {
                     fieldErrors.email = "\nYou must enter a valid email.\n"
                 }
             }
-            if (input.name === "username") {
-                if (val.length < 3 || val.length > 21) {
+            if (input.name === "username" && (val.length < 3 || val.length > 21)) {
                     fieldErrors.username = "\nUsername length has to be between 3 and 21 valid characters.\n"
-
-                }
             }
-            if (input.name === "password" && val.length > 1000) {
-                    fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
-            }
-            if (input.name === "password2" && (val.length < 7 || val.length > 1000)) {
+            if (input.name === "password" && (val.length < 7 || val.length > 1000)) {
                     fieldErrors[input.name] = "\nInvalid password length: password should be between 7 & 1000 characters\n"
             }
             if (document.getElementsByName("password").value !== document.getElementsByName("password2").value) {
@@ -72,17 +65,25 @@ module.exports = {
     
     
         }
+        console.log(fieldErrors)
         if (Object.keys(fieldErrors).length !== 0) {
             let errorStr = "";
             for (const field in fieldErrors) {
-                errorStr += `\nError in field: ${field !== "credential" ? field : "username or email"} - ${fieldErrors[field]}`
+                errorStr += `\nError in the ${field !== "credential" ? field : "username or email"} field: ${fieldErrors[field]}`
             }
             console.log(errorStr)
             alert(errorStr)
-            return
-        } else {
+            // let errorDiv = document.createElement('div')
+            // document.body.appendChild(errorDiv)
+            // errorDiv.innerText = errorStr
+            // errorDiv.id = "errorDiv"
+            // errorDiv.style.color = "black"
+            // errorDiv.style.borderRadius = 4
+        } else if (Object.keys(fieldErrors).length === 0) {
+            console.log('hi')
+            // document.getElementById('errorDiv').style.display = "none"
             for (const input of form) {
-                if (input.name !== "confirm_pass") {
+                if (input.name !== "password2") {
                     reqBody[input.name] = input.value
                 }
             }
