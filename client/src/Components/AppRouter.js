@@ -19,8 +19,8 @@ export default function AppRouter(props) {
             <Route exact path = '/login'>
                 <Login user={props.user} loggedIn={props.loggedIn}/>
             </Route>
-            <Route>
-                <Register />
+            <Route exact path = '/register'>
+                <Register user={props.user} loggedIn={props.loggedIn}/>
             </Route>
             <Route path='/'>
                 <div>
