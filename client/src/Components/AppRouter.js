@@ -3,16 +3,21 @@ import Home from './Home'
 import Login from './Login'
 import Register from './Register'
 
-import { Switch, Route } from 'react-router-dom'
+import { 
+    Switch,
+    Route,
+    BrowserRouter as Router
+} from 'react-router-dom'
 
-export default function AppRouter() {
+export default function AppRouter(props) {
     return (
+    <Router>
         <Switch>
             <Route exact path='/'>
-                <Home />
+                <Home user={props.user} loggedIn={props.loggedIn}/>
             </Route>
             <Route exact path = '/login'>
-                <Login />
+                <Login user={props.user} loggedIn={props.loggedIn}/>
             </Route>
             <Route>
                 <Register />
@@ -23,5 +28,6 @@ export default function AppRouter() {
                 </div>
             </Route>
         </Switch>
+    </Router>
     )
 }
