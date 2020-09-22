@@ -5,14 +5,15 @@ import {get, set} from '../utils/localStorage'
 export default useTheme(initialVal) {
 
     const [theme, setTheme] = useState((initialVal) => {
-        return get("theme", initialVal)
+        return initialVal
     })
 
     useEffect(() => {
-        console.log(`Theme changed to: `, theme)
-        return () => {
-            cleanup
-        }
-    }, [theme])
+        console.log()
+        set('theme', theme)
 
+    }, [theme])
+    return[theme, setTheme]
     }
+
+
