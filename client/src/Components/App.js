@@ -8,10 +8,15 @@ import Styles from '../utils/styles'
 export default function App() {
   const [theme, setTheme ] = useState(true)
   useEffect( () => {
-
-  }, [])
+    console.log(theme)
+  }, [theme]) //put in state variables here
    return (
     <BrowserRouter>
+    <Button text="Change Theme"
+    onClick={() => {
+      setTheme(prevTheme => {!prevTheme}) //you just set it to the opposite of what it used to be
+    }}
+    />
     <AppRouter />
     </BrowserRouter>
   )
