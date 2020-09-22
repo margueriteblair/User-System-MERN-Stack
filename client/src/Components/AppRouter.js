@@ -8,19 +8,23 @@ import {
     Route,
     BrowserRouter as Router
 } from 'react-router-dom'
+import {useTheme} from '../hooks/useTheme'
+
 
 export default function AppRouter(props) {
+    const [theme, setTheme] = useTheme(true)
+
     return (
     <Router>
         <Switch>
             <Route exact path='/'>
-                <Home user={props.user} loggedIn={props.loggedIn}/>
+                <Home />
             </Route>
             <Route exact path = '/login'>
-                <Login user={props.user} loggedIn={props.loggedIn}/>
+                <Login />
             </Route>
             <Route exact path = '/register'>
-                <Register user={props.user} loggedIn={props.loggedIn}/>
+                <Register />
             </Route>
             <Route path='/'>
                 <div>
