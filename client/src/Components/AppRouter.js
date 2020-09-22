@@ -21,6 +21,9 @@ export default function AppRouter(props) {
                 {theme ? 'Light Mode' : 'Dark Mode'}
             </h1>
             <button>
+            onClick = {() => {
+                setTheme( prevTheme => {return !prevTheme})
+            }}
             {!theme ? 'Switch to Light Mode' : 'Switch to Dark Mode'}   
             </button>
             <Route exact path='/'>
