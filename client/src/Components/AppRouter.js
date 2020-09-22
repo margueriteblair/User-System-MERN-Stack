@@ -17,6 +17,12 @@ export default function AppRouter(props) {
     return (
     <Router>
         <Switch>
+            <h1>
+                {theme ? 'Light Mode' : 'Dark Mode'}
+            </h1>
+            <button>
+            {!theme ? 'Switch to Light Mode' : 'Switch to Dark Mode'}   
+            </button>
             <Route exact path='/'>
                 <Home />
             </Route>
