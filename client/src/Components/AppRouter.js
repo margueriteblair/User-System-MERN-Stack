@@ -35,11 +35,6 @@ export default function AppRouter(props) {
             <Route exact path = '/register'>
                 <Register />
             </Route>
-            <Route path='/'>
-                <div>
-                    <h1>404</h1>
-                </div>
-            </Route>
         </Switch>
     </Router>
     )
