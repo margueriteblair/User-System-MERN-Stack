@@ -5,19 +5,32 @@ import Button from './Button'
 import Styles from '../utils/styles'
 
 
-export default function App() {
-  // const [theme, setTheme ] = useState(true)
-  // useEffect( () => {
-  //   console.log(theme)
-  // }, [theme]) //put in state variables here
-   return (
+import React, { useState, useEffect, use} from 'react';
+​
+import {BrowserRouter} from 'react-router-dom';
+​
+import AppRouter from './AppRouter';
+​
+function App() {
+​
+// const [theme, setTheme] = useState(true);
+​
+// useEffect( () => {
+//   console.log(theme);
+// }, [])
+​
+  return (
     <BrowserRouter>
-    {/* <Button text="Change Theme"
-    onClick={() => {
-      setTheme(prevTheme => {return !prevTheme}) //you just set it to the opposite of what it used to be
-    }}
-    /> */}
-    <AppRouter dm={theme}/>
+      {/* <button
+      onClick={() => {
+        setTheme( prevTheme => {return !prevTheme})
+      }}
+      >
+        Change Theme
+      </button> */}
+      <AppRouter />
     </BrowserRouter>
-  )
+  );
 }
+​
+export default App;
