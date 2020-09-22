@@ -3,17 +3,16 @@ import {get, set} from '../utils/localStorage'
 
 
 export default useTheme(initialVal) {
-    const [theme, setTheme] = useState(() => {
-        return initialVal
+
+    const [theme, setTheme] = useState((initialVal) => {
+        return get("theme", initialVal)
     })
-    return [theme, setTheme]
-}
 
-function get (key) {
+    useEffect(() => {
+        console.log(`Theme changed to: `, theme)
+        return () => {
+            cleanup
+        }
+    }, [theme])
 
-}
-
-
-function set (key, value) {
-
-}
+    }
