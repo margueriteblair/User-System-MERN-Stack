@@ -1,11 +1,15 @@
 import React from 'react'
 import Button from './Button'
+import useTheme from '../hooks/useTheme'
 
 export default function Home() {
     const loginLink = '/login';
     const regLink = '/register';
+    const [theme] = useTheme()
     return (
-        <div>
+        <div
+        style={{backgroundColor : theme ? "white" : "black"}}
+        >
             <h1>
                 Welcome To Our Service
             </h1>
