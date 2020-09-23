@@ -10,9 +10,10 @@ export default (initialVal) => {
 
     useEffect(() => {
         console.log('themem changed')
+        
         set('theme', theme)
 
-    }, [theme])
+    })
 
     return[theme, setTheme]
 
