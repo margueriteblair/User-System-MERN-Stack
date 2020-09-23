@@ -31,7 +31,7 @@ export function ThemeProvider({childen}) {
     return (
         <ThemeContext.Provider value={theme}>
             <ThemeUpdateContext value={themeToggle}>
-                {{children}}
+                {children}
             </ThemeUpdateContext>
         </ThemeContext.Provider>
     )

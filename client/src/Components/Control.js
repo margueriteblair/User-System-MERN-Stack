@@ -1,11 +1,15 @@
 import React from 'react'
-import useTheme from '../hooks/useTheme'
+import {useTheme, useThemeUpdate} from '../hooks/ThemeContext'
 
 //any array can be taken, it's just an initial value
 
 export default function Control() {
 
-    const [theme, setTheme] = useTheme(true);
+    const theme = useTheme()
+
+    const updateTheme = useThemeUpdate()
+
+    console.log(theme)
 
     // setTheme(() => {})
 
@@ -13,7 +17,7 @@ export default function Control() {
         <div>
             <h1>{theme ? 'Light Mode' : "Dark Mode"}</h1>
             <button
-            onClick={() => {setTheme(prevTheme => {return !prevTheme})}}
+            onClick={updateTheme}
             >Toggle Theme</button>
         </div>
     )
