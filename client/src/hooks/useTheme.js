@@ -1,22 +1,21 @@
-import React, {useState, useEffect} from 'react'
-import {get, set} from '../utils/localStorage'
+import React, {useState, useEffect} from 'react';
 
+import {get, set} from '../utils/localStorage';
 
-export default (initialVal) => {
+export default (initalVal) => {
 
-    const [theme, setTheme] = useState(() => {
-        return get('theme', initialVal)
+    const [theme, setTheme] = useState( () => {
+        return get ('theme', initalVal)
     })
 
-    useEffect(() => {
-        console.log('themem changed')
+    useEffect (() => {
+
+        console.log(`Theme changed to: `, theme);
         
         set('theme', theme)
 
     })
-
-    return[theme, setTheme]
-
-    }
+    return [theme, setTheme]
+}
 
 
