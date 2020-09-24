@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useContext, createContext } from 'react'
+import React, {useState, useEffect, useContext, createContext} from 'react';
 
-
-const {get, set} = require('../utils/localStorage')
-
-const ThemeContext = createContext()
-
-const ThemeUpdateContext = createContext()
+const { get, set } = require('../utils/localStorage');
+const ThemeContext = createContext();
+const ThemeUpdateContext = createContext();
 
 export function useTheme() {
     return useContext(ThemeContext)
@@ -15,24 +12,28 @@ export function useThemeUpdate() {
     return useContext(ThemeUpdateContext)
 }
 
-export function ThemeProvider({childen}) {
+export function ThemeProvider({ children }) { //provides context to all componenets to the function
+
     const [theme, setTheme] = useState( () => {
-        return get('theme', true)
+        return get('theme', true) //starts us off in lightmode. light= true
     })
 
-    useEffect(() => {
+    useEffect( () => {
         set('theme', JSON.stringify(theme))
-        console.log('The theme changed: ', theme)
-    }, [theme]) //the dependency list, what needs to change for the function to run
-    //only runs the function when theme changes
+        console.log('The Theme Changed:', theme);
+
+        document.getElementById('root').style.backgroundColor= theme ? 'white' : 'black';
+    }, [theme])//when theme changes use this function
+
     const themeToggle = () => {
-        setTheme(prev => !prev)
+        setTheme(currentTheme => !currentTheme)
     }
+
     return (
         <ThemeContext.Provider value={theme}>
-            <ThemeUpdateContext value={themeToggle}>
+            <ThemeUpdateContext.Provider value={themeToggle}>
                 {children}
-            </ThemeUpdateContext>
+            </ThemeUpdateContext.Provider>
         </ThemeContext.Provider>
     )
 }
