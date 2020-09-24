@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import {BrowserRouter} from 'react-router-dom'
-import AppRouter from './AppRouter'
-import {ThemeProvider} from '../hooks/ThemeContext'
-// import Button from './Button'
-// import Styles from '../utils/styles'​​​
+import React //{ useState, useEffect, use} 
+from 'react';
+
+import {BrowserRouter} from 'react-router-dom';
+
+import AppRouter from './AppRouter';
+
+import { ThemeProvider } from '../hooks/ThemeContext';
+
 function App() {
 
   return (
-  <BrowserRouter>
-    <ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
       <AppRouter />
-    </ThemeProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
+
 export default App;
