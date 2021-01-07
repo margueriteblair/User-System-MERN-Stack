@@ -1,3 +1,3 @@
 # User-System-MERN-Stack
-Fullstack - ReactJS frontend, NodeJS backend
-Social media page to log in (Patch) and create an account (Post).
+Fullstack - ReactJS frontend, NodeJS backend<br>
+Social media page to log in (PATCH request) and create an account (POST request).
